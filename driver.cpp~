@@ -5,7 +5,8 @@
 // 
 //********************************************************
 
-#include <iostream>
+#include <iostream> // cin/cout
+#include <cassert> // assert unit testing
 
 using namespace std;
 
@@ -20,5 +21,90 @@ void receipt(double total, int people, double discount);
 
 int main()
 {
+    cout << climbing(4) << endl;
+    
 	return 0;
+}
+
+double climbing(int people)
+{
+    char viewTotalCharges;
+    double baseTotal, totalAmount, discountTotal = 0, climbOptional, equipOptional;
+    int peopleOptional, daysOptional;
+
+    const double BASE_CHARGE = 350, DISCOUNT = 0.10, CLIMB_INSTR = 100, EQUIP_RENT = 40;
+    
+    cout 
+        << "\nThank you for choosing Devil's Courthouse Adventure Weekend!" << endl
+        << endl << "Listed below are our rates." << endl
+        << "\t⇨ Base Charge: \t\t\t$" << BASE_CHARGE << " per person" << endl
+        << "\t⇨ Climbing Instructions: \t$" << CLIMB_INSTR << " per person (optional)" << endl
+        << "\t⇨ Equipment Rental: \t\t$" << EQUIP_RENT << "/day per person (optional)" << endl << endl;
+
+    // calculate the base total, before discount
+    baseTotal = BASE_CHARGE * people;
+    
+    // calculate the discount total, if there are 5 or more people
+    if (people >= 5)
+    {
+        discountTotal = BASE_CHARGE * DISCOUNT;
+        //discountTotal = discount(baseTotal, people);
+    }
+    
+    
+
+    cout 
+        << "You have [" << people << "] people in your party." << endl
+        << "Your Base Charge (before discount) is:\t$" << baseTotal << endl
+        << "Your Discount Total is:\t\t\t(-$" << discountTotal << ")" << endl;
+        
+        baseTotal -= discountTotal; // subtract discount total from the base total
+        totalAmount = baseTotal;
+        
+    cout << "Your Base Charge (after discount) is:\t$" << baseTotal << endl << endl;
+        
+    cout << "Enter the number of people who will need climbing instructions: ";
+    cin >> peopleOptional;
+    
+    cout << "$" << CLIMB_INSTR << " x [" << peopleOptional << "] people =" << endl;
+    
+    climbOptional = CLIMB_INSTR * peopleOptional;
+    
+    cout << "\t⇨ $" << climbOptional << " will be added to your current total of $" << totalAmount << "." << endl;
+    totalAmount += climbOptional;  // add the optional charge of climbing instructions, climbOptional, to the totalCharge
+    
+    cout << "\tYour updated total is $" << totalAmount << "." << endl << endl;
+    
+    cout << "Enter the number of people who will need to rent equipment: ";
+    cin >> peopleOptional;
+    
+    cout << "How many days will you be renting equipment? ";
+    cin >> daysOptional;
+    
+    cout << "$" << EQUIP_RENT << " x [" << peopleOptional << "] people x [" << daysOptional << "] days =" << endl;
+    equipOptional = EQUIP_RENT * peopleOptional * daysOptional;
+
+    cout << "\t⇨ $" << equipOptional << " will be added to your current total of $" << totalAmount << "." << endl;
+    totalAmount +=  equipOptional;  // add the optional charge of equipment rental, equipOptional, to the totalCharge
+    
+    cout << "\tYour updated total is $" << totalAmount << "." << endl << endl;
+    
+    cout << "Enter any key to view your Total Charges: ";
+    cin >> viewTotalCharges;
+    
+    if(viewTotalCharges = viewTotalCharges)
+    {
+        cout    
+            << "\nYour total charges are as follows..." << endl
+            << "Base Charge: \t$" << baseTotal + discountTotal << endl
+            << "Discount: \t(-$" << discountTotal << ")" << endl
+            << "Climbing Instructions: \t+($" << climbOptional << ")" << endl
+            << "Equipment Rental: \t+($" << equipOptional << ")" << endl
+            << "TOTAL AMOUNT: \t$" << totalAmount << endl;
+    }
+
+        
+    return 22;
+        
+    
 }
