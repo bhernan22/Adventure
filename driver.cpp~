@@ -22,14 +22,24 @@ void receipt(double total, int people, double discount);
 
 int main()
 {
-    double scubaTest;
-	int count = 0;
-	while(count == 0)
-	{
-	    scubaTest = scuba(2);
-	    cout << scubaTest << endl;
-	}
+    cout << scuba(4) << endl;
+    
+    assert(discount(100.0, 3) == 0);
+    assert(discount(100.0, 5) == 10);
+    assert(discount(200.0, 33) == 20);
 	return 0;
+}
+
+double discount(double baseCharge, int people)
+{
+    if (people >= 5)
+    {//if five or more people return 10% of the base charge
+        return (baseCharge * .10);
+    }     
+    else
+    {//if less than five people return 0
+        return 0;
+    }
 }
 
 double scuba(int people)
@@ -59,7 +69,7 @@ double scuba(int people)
     
     }while(students > people || students < 0);
     
- //       baseDiscount = discount(personPrice, people);//find the discount.     
+        baseDiscount = discount(personPrice, people);//find the discount.     
     
     return (personPrice * people) + (instructionPrice * students) - baseDiscount;
 }
