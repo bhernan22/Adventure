@@ -21,18 +21,30 @@ void receipt(double total, int people, double discount);
 
 int main()
 {
-    cout << "TOTAL AMOUNT: $" << climbing(8) << endl;
-    
+
 	return 0;
 }
 
+//*******************************
 double climbing(int people)
 {
-    char viewTotalCharges;
-    double baseTotal, totalAmount, discountTotal = 0, climbOptional, equipOptional;
-    int peopleOptional, daysOptional;
 
-    const double BASE_CHARGE = 350, DISCOUNT = 0.10, CLIMB_INSTR = 100, EQUIP_RENT = 40;
+    double 
+        discountTotal = 0,
+        baseTotal, 
+        totalAmount,  
+        climbOptional, 
+        equipOptional;
+        
+    int 
+        peopleOptional, 
+        daysOptional;
+
+    const double 
+        BASE_CHARGE = 350, 
+        DISCOUNT = 0.10, 
+        CLIMB_INSTR = 100, 
+        EQUIP_RENT = 40;
     
    
     cout 
@@ -46,12 +58,8 @@ double climbing(int people)
     // calculate the base total, before discount
     baseTotal = BASE_CHARGE * people;
     
-    // calculate the discount total, if there are 5 or more people
-    if (people >= 5)
-    {
-        discountTotal = BASE_CHARGE * DISCOUNT;
-        //discountTotal = discount(baseTotal, people);
-    }
+    // call discount() to calculate the discount
+    discountTotal = discount(baseTotal, people);
     
     
     cout 
@@ -89,25 +97,20 @@ double climbing(int people)
     cout << "\t⇨ $" << equipOptional << " will be added to your current total of $" << totalAmount << "." << endl;
     totalAmount +=  equipOptional;  // add the optional charge of equipment rental, equipOptional, to the totalCharge
     
-/**** DISPLAY ALL CHARGES
-    cout << "\tYour updated total is $" << totalAmount << "." << endl << endl;
-    
-    cout << "Enter any key to view your Total Charges: ";
-    cin >> viewTotalCharges;
-    
-    if(viewTotalCharges = viewTotalCharges)
-    {
-        cout    
-            << "\nYour total charges are as follows..." << endl
-            << "Base Charge: \t$" << baseTotal + discountTotal << endl
-            << "Discount: \t(-$" << discountTotal << ")" << endl
-            << "Climbing Instructions: \t+($" << climbOptional << ")" << endl
-            << "Equipment Rental: \t+($" << equipOptional << ")" << endl;
-    }
-****/
+        
+    return totalAmount;    
+}   // climbing()
 
-        
-    return totalAmount;
-        
-    
-}
+//*******************************
+void receipt(double total, int people, double discount)
+{
+    cout 
+        << "\nYour charges are as follows:" << endl
+        << "\t⇨ Per person: \t$" << total/people << endl
+        << "\t⇨ Total people: \t" << people << endl
+        << "Base Charge: \t$" << total + discount << endl
+        << "\t⇨ Discount: \t-($" << discount << ")" << endl
+        << "TOTAL CHARGES: \t$" << total << endl
+        << "\nThank you for purchasing your vacation package!" << endl;   
+}   // receipt()
+
