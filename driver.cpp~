@@ -44,8 +44,8 @@ double discount(double baseCharge, int people)
 
 double scuba(int people)
 {
-    const double personPrice = 350;//price per person
-    const double instructionPrice = 100;//price of scuba instruction
+    const double PERSON_PRICE = 350;//price per person
+    const double INSTRUCRION_PRICE = 100;//price of scuba instruction
     int students;//variable to hold the number of people who need scuba instruction
     double baseDiscount = 0;//discount off of the base price (positive number!)
        
@@ -69,7 +69,7 @@ double scuba(int people)
     
     }while(students > people || students < 0);
     
-        baseDiscount = discount(personPrice, people);//find the discount.     
+        baseDiscount = discount(PERSON_PRICE, people);//find the discount.     
     
-    return (personPrice * people) + (instructionPrice * students) - baseDiscount;
+    return (PERSON_PRICE * people) + (INSTRUCRION_PRICE * students) - baseDiscount;
 }
