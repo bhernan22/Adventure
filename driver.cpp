@@ -85,7 +85,7 @@ double skyDive(int people)
     cout << "\nHow many days will you be staying there?" << endl;
     cin >> days;
     
-    while (housingCost == 'w' || housingCost == 'l')
+    while (housingChoice == 'w' || housingChoice == 'l') 
     {
         if (housingChoice == 'w')
         {
@@ -97,9 +97,9 @@ double skyDive(int people)
         }
     }
     
-    while (housingCost != 'w' && housingCost != 'l')
+    while (housingChoice != 'w' && housingChoice != 'l') 
     {
-        cout << "Invalid answer, please enter in 'l' or 'w'" << endl;
+        cout << "Invalid answer, please enter in 'w' or 'l'" << endl;
         cin >> housingChoice;
         
         if (housingChoice == 'w')
