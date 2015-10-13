@@ -21,6 +21,7 @@ void receipt(double total, int people, double discount);
 
 int main()
 {
+	cout << skyDive(5) << endl;
 	return 0;
 }
 
@@ -58,9 +59,7 @@ double skyDive(int people)
          << "the Luxury Inn which is $120/day per person? Please\n"
          << "enter in 'w' for Wilderness and 'l' for Luxury." << endl;
     cin >> housingChoice;
-    
-    
-    
+        
    /*if (people > 5)
     {
        allDiscount = discount(baseCharge, people);
@@ -70,58 +69,37 @@ double skyDive(int people)
     allDiscount = 0;
     
     //}
-    
-    while (housingChoice == 'w' || housingChoice == 'l') 
-    {
-        cout << "\nHow many days will you be staying there?" << endl;
-        cin >> days;
-        
-        if (housingChoice == 'w')
-        {
-            housingCost = wilderness * (people * days);
-            cout << "\nYour base cost is: $" << baseCost << endl;
-            cout << "Your housing cost is: $" << housingCost << endl;
-            cout << "Your discount amount is: $" << allDiscount << endl;
-            return (baseCost + housingCost - allDiscount);  
-            
-        }
-        else if (housingChoice == 'l')
-        {
-            housingCost = luxury * (people *days);
-            cout << "\nYour base cost is: $" << baseCost << endl;
-            cout << "Your housing cost is: $" << housingCost << endl;
-            cout << "Your discount amount is: $" << allDiscount << endl;
-            return (baseCost + housingCost - allDiscount);  
-            
-        }
-    }
-    
-    while (housingChoice != 'w' && housingChoice != 'l') 
+       
+    while (housingChoice != 'w' || housingChoice != 'l') 
     {
         cout << "Invalid answer, please enter in 'w' or 'l'" << endl;
         cin >> housingChoice;
         
-        cout << "\nHow many days will you be staying there?" << endl;
-        cin >> days;        
+        if (housingChoice == 'w' || housingChoice == 'l')
+        {
+            break;
+        }
+    }
+    
+    cout << "\nHow many days will you be staying there?" << endl;
+    cin >> days;        
         
-        if (housingChoice == 'w')
-        {
-            housingCost = wilderness * (people * days);
-            cout << "\nYour base cost is: $" << baseCost << endl;
-            cout << "Your housing cost is: $" << housingCost << endl;
-            cout << "Your discount amount is: $" << allDiscount << endl;
-            return (baseCost + housingCost - allDiscount);  
-            
-        }
-        else if (housingChoice == 'l')
-        {
-            housingCost = luxury * (people * days);
-            cout << "\nYour base cost is: $" << baseCost << endl;
-            cout << "Your housing cost is: $" << housingCost << endl;
-            cout << "Your discount amount is: $" << allDiscount << endl;
-            return (baseCost + housingCost - allDiscount);  
-            
-        }
+    if (housingChoice == 'w')
+    {
+    housingCost = wilderness * (people * days);
+    //cout << "\nYour base cost is: $" << baseCost << endl;
+    //cout << "Your housing cost is: $" << housingCost << endl;
+    //cout << "Your discount amount is: $" << allDiscount << endl;
+    return (baseCost + housingCost - allDiscount);             
+    }
+    
+    else if (housingChoice == 'l')
+    {
+    housingCost = luxury * (people * days);
+    //cout << "\nYour base cost is: $" << baseCost << endl;
+    //cout << "Your housing cost is: $" << housingCost << endl;
+    //cout << "Your discount amount is: $" << allDiscount << endl;
+    return (baseCost + housingCost - allDiscount);             
     }
        
 }
