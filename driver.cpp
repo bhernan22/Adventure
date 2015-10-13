@@ -21,12 +21,7 @@ double discount(char choice, int people);
 void receipt(double total, int people, double discount);
 
 int main()
-{
-    cout << scuba(4) << endl;
-    
-    assert(discount(100.0, 3) == 0);
-    assert(discount(100.0, 5) == 10);
-    assert(discount(200.0, 33) == 20);
+{    
 	return 0;
 }
 
@@ -72,4 +67,56 @@ double scuba(int people)
         baseDiscount = discount(PERSON_PRICE, people);//find the discount.     
     
     return (PERSON_PRICE * people) + (INSTRUCRION_PRICE * students) - baseDiscount;
+}
+
+double spelunk(int people)
+{
+    const double PERSON_PRICE = 700;//base price per person
+    const double RENTAL = 40;//equipment rental per day per person
+    double baseDiscount = discount(PERSON_PRICE, people);//discount off of base price
+    int renters;//how many people are renting equipment
+    int days;//days that a single person is renting equipment for
+    int totalDays = 0;//total days that equipment is getting rented for 
+    
+    cout << "Thank you for choosing Barron Cliff Spelunk!\n";
+    do//error checking for input
+    {
+        cout << "Optional equipment rental is $40 per day for every person.\n";
+        cout << "How many need to rent equipment?\n";
+        cin >> renters;
+        if (renters > people)
+        {
+            cout << "You have tried to rent equipment for more people than are in your party\n";
+            cout << "Please enter a smaller number\n";
+        }
+        else if(renters < 0)
+        {
+            cout << "Please enter a positive number.\n";
+        } 
+    }while((renters > people) || (renters < 0));//continue until the user has entered valid input
+    
+    for(int i = 1;i <= renters;i++)//ask how many days each renter needs the equipment for
+    {
+        do
+        {
+            cout << "How many days does person " << i << " want to rent equipment?\n";
+            cout << "(The trip is eight days long.)\n";
+            cin >> days;
+            
+            if (days > 8)
+            {
+                cout << "The trip is only eight days please enter a smaller number\n";
+            }
+            else if(days < 0)
+            {
+                cout << "Please enter a positive number.";
+            }
+            else 
+            {
+                totalDays += days;//if valid input add to total days
+            }
+  
+        }while((days > 8) || (days < 0));//continue until user enters valid input        
+    }  
+    return ((RENTAL * totalDays) + (people * PERSON_PRICE) - baseDiscount); 
 }
