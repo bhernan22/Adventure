@@ -22,7 +22,6 @@ void receipt(double total, int people, double discount);
 
 int main()
 {    
-	cout << spelunk(5) << endl;
 	return 0;
 }
 

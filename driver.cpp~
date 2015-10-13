@@ -28,7 +28,7 @@ int main()
 
 double discount(double baseCharge, int people)
 {
-    baseCharge = people * baseCharge
+    baseCharge = people * baseCharge;
     if (people >= 5)
     {//if five or more people return 10% of the base charge
         return (baseCharge * .10);
