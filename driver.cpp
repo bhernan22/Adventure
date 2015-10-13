@@ -21,6 +21,8 @@ void receipt(double total, int people, double discount);
 
 int main()
 {	
+	menu();
+	skyDive(5);
 	return 0;
 }
 
@@ -60,7 +62,7 @@ double skyDive(int people)
     cout << "\nHow many days will you be staying there?" << endl;
     cin >> days;
     
-    while (housingCost == 'w' || housingCost == 'l')
+    while (housingChoice == 'w' || housingChoice == 'l')
     {
         if (housingChoice == 'w')
         {
@@ -72,7 +74,7 @@ double skyDive(int people)
         }
     }
     
-    while (housingCost != 'w' && housingCost != 'l')
+    while (housingChoice != 'w' && housingChoice != 'l')
     {
         cout << "Invalid answer, please enter in 'l' or 'w'" << endl;
         cin >> housingChoice;
