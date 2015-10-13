@@ -32,8 +32,6 @@ int main()
 	cout <<  "\nHow many people will be participating in this trip? ";
 	cin >> people;
 	
-	cout<< "Please select one of our packages." << endl << endl;
-	
 	choice = menu();
 	
 	switch(choice)
@@ -48,12 +46,12 @@ int main()
 						break;
 		default: cout << "You enter an invalid input. Please Try Again." << endl;
 	}
+	
 	discountTotal = 0;
 	receipt(total, people, discountTotal);
 	
 	return 0;
 }
-
 char menu()
 {
     char choice;
@@ -62,8 +60,8 @@ char menu()
     cout << "Enter in '1' for Devil’s Courthouse Adventure Weekend" << endl;
     cout << "Enter in '2' for Scuba Bahama" << endl;
     cout << "Enter in '3' for Sky Dive Colorado" << endl;
-    cout << "Enter in '4' for Barron Cliff Spelunk" << endl;
-    
+    cout << "Enter in '4' for Barron Cliff Spelunk" << endl << endl;
+    cout<< "Please select one of our packages.";
     cin >> choice;
     
     return choice;   
@@ -71,49 +69,91 @@ char menu()
 double skyDive(int people)
 {
     char housingChoice;
-    double housingCost;
+    char inn, lodge, both;
+    double housingCost, innCost, lodgeCost;
     double allDiscount;
+    double baseCost;
+    int days = 0;
+    int innDays = 0;
+    int lodgeDays = 0;
+    int daysFor2 = 0;
     double baseCharge = 700.00;
     int wilderness = 65;
     int luxury = 120;
-    int baseCost;
-    int days;
+        
+    baseCost = baseCharge * people;
     
-    cout << "\nWould you like to stay at the Wilderness Lodge which\n"
-         << "is $65/day per person or would you like to stay\n"
-         << "at the Luxury Inn which is $120/day per person?\n"
-         << "Please enter in 'w' for Wilderness and 'l' for Luxury." << endl;
+    cout << "\nTHANK YOU FOR CHOICING THE 4 DAY SKYDIVING PLAN\n"
+         << "HOPE YOU HAVE A GREAT TIME!!" << endl;
+        
+    cout << "\nWhere would you like to stay? \n"
+         << "Wilderness Lodge: $65/day per person \n"
+         << "Luxury Inn: $120/day per person\n"
+         << "Please enter in 'w' for Wilderness and 'l' for Luxury and for "
+         << "both enter in 'b'." << endl;
     cin >> housingChoice;
-    
-    cout << "\nHow many days will you be staying there?" << endl;
-    cin >> days;
-    
-    while (housingChoice == 'w' || housingChoice == 'l') 
+               
+    while (housingChoice != 'w' && housingChoice != 'l' && housingChoice != 'b') 
     {
-        if (housingChoice == 'w')
-        {
-            housingCost = wilderness * days;
-        }
-        else if (housingChoice == 'l')
-        {
-            housingCost = luxury * days;
-        }
+        cout << "Invalid answer, please enter in 'w' or 'l' or 'b'" << endl;
+        cin >> housingChoice;
     }
     
-    while (housingChoice != 'w' && housingChoice != 'l') 
+    if (housingChoice == 'w')
     {
-        cout << "Invalid answer, please enter in 'w' or 'l'" << endl;
-        cin >> housingChoice;
+        lodge = 'w';
+        cout << "\nHow many days will you be staying there?" << endl;
+        cin >> days;  
+    }
+    else if (housingChoice == 'l')
+    {
+        inn = 'l';
+        cout << "\nHow many days will you be staying there?" << endl;
+        cin >> days;  
+    }
+    else if (housingChoice == 'b')
+    {
+        both = 'b';
+        cout << "How many days would you like to stay at the Wilderness Lodge?" << endl;
+        cin >> lodgeDays;
+        cout << "How many days would you like to stay at the Luxury Inn?" << endl;
+        cin >> innDays;
         
-        if (housingChoice == 'w')
-        {
-            housingCost = wilderness * days;
-        }
-        else if (housingChoice == 'l')
-        {
-            housingCost = luxury * days;
-        }
-   
+        daysFor2 = lodgeDays + innDays;        
+    }
+    	while (daysFor2 > 4)
+    {
+        cout << "\nToo long of a stay" << endl;
+        cout << "\nHow many days would you like to stay at the Wilderness Lodge?" << endl;
+        cin >> lodgeDays;
+        
+        cout << "How many days would you like to stay at the Luxury Inn?" << endl;
+        cin >> innDays;
+        
+        daysFor2 = lodgeDays + innDays;
+    }              
+    while (days > 4)
+    {
+        cout << "That too long of a stay.\nPlease enter in a right amount of days." << endl;
+        cin >> days;
+    }
+    if (lodge == 'w')
+    {
+        housingCost = wilderness * (people * days);                
+    }   
+    else if (inn == 'l')
+    {
+        housingCost = luxury * (people * days);              
+    }
+    else if (both == 'b')
+    {
+        innCost = luxury * (people * innDays);
+        cout << "Your inn cost is :$ " << innCost << endl;
+        lodgeCost = wilderness * (people * lodgeDays);
+        cout << "Your lodge cost is :$ " << lodgeCost << endl;
+        
+        housingCost = innCost + lodgeCost;      
+    }          
     baseCost = baseCharge * people;
     
     if (people > 5)
@@ -124,8 +164,11 @@ double skyDive(int people)
     {
         allDiscount = 0;
     }
-    return (baseCost + housingCost - allDiscount);    
-}
+  
+    cout << "\nYour base cost is: $" << baseCost << endl;
+    cout << "Your housing cost is: $" << housingCost << endl;
+    cout << "Your discount amount is: $" << allDiscount << endl;
+    return (baseCost + housingCost - allDiscount);      
 }
 double climbing(int people)
 {
@@ -287,7 +330,7 @@ void receipt(double total, int people, double discount)
         << "Base Charge: \t$" << total + discount << endl
         << "\t⇨ Discount: \t-($" << discount << ")" << endl
         << "TOTAL CHARGES: \t$" << total << endl
-        << "\nThank you for purchasing your vacation package!" << endl;   
+        << "\nThank you for purchasing your vacation package!\n" << endl;   
 } 
 double discount(double baseCharge, int people)
 {
