@@ -59,11 +59,8 @@ double climbing(int people)
     baseTotal = BASE_CHARGE * people;
     
     // call discount() to calculate the discount
-    //discountTotal = discount(baseTotal, people);
-    if (people >= 5)
-    {
-        discountTotal = BASE_CHARGE * DISCOUNT_RATE;
-    }
+    discountTotal = discount(baseTotal, people);
+    
     
     cout 
         << "You have [" << people << "] people in your party." << endl
