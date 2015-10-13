@@ -114,3 +114,57 @@ void receipt(double total, int people, double discount)
         << "\nThank you for purchasing your vacation package!" << endl;   
 }   // receipt()
 
+//*******************************
+double discount(char choice, int people)
+{
+    const double DISCOUNT_RATE = 0.10;  // 10% discount only applies to parties of 5 or more people
+    double totalDiscount = 0;
+    
+    switch(choice)
+    {
+        case 1: // Devil's Courthouse Adventure Weekend
+            const double BASE_CHARGE = 325;
+            
+            if (people >= 5)
+            {
+                totalDiscount = BASE_CHARGE * DISCOUNT_RATE; 
+                return totalDiscount;
+            }
+            
+            return totalDiscount;  
+            
+        case 2: // Scuba Bahama
+            const double BASE_CHARGE = 1000;
+            
+            if (people >= 5)
+            {
+                totalDiscount = BASE_CHARGE * DISCOUNT_RATE; 
+                return totalDiscount;
+            }
+            
+            return totalDiscount;   
+            
+        case 3: //Sky Dive Colorado
+            const double BASE_CHARGE = 700;
+            
+            if (people >= 5)
+            {
+                totalDiscount = BASE_CHARGE * DISCOUNT_RATE; 
+                return totalDiscount;
+            }
+            
+            return totalDiscount;   
+            
+        case 4: // Barron Cliff Spelunk
+            const double BASE_CHARGE = 700;
+            
+            if (people >= 5)
+            {
+                totalDiscount = BASE_CHARGE * DISCOUNT_RATE; 
+                return totalDiscount;
+            }
+            
+            return totalDiscount;   
+            
+    }   // switch()
+}   // discount()
