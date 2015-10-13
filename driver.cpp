@@ -21,6 +21,30 @@ void receipt(double total, int people, double discount);
 
 int main()
 {	
+	int people;
+	char choice;
+	
+	cout << 	"Welcome to the High Adventure Travel Agency!" << endl;
+	cout <<  "How many people will be participating in this trip?";
+	cin >> people;
+	
+	cout<< "Please select one of our packages." << endl;
+	
+	choice = menu();
+	
+	switch(choice)
+	{
+		case '1': climbing(people);
+						break;
+		case '2': scuba(people);
+						break;
+		case '3': skyDive(people);
+						break;
+		case '4': spelunk(people);
+						break;
+		default: cout << "You enter an invalid input. Please Try Again." << endl;
+	}
+	
 	return 0;
 }
 
@@ -98,5 +122,17 @@ double skyDive(int people)
         allDiscount = 0;
     //}
     return (baseCost + housingCost - allDiscount);    
+}
+double climbing(int people)
+{
+ return 5.8;
+}
+double scuba(int people)
+{
+	return 5.6;
+}
+double spelunk(int people)
+{
+	return 5.4;
 }
 
