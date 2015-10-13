@@ -23,24 +23,25 @@ int main()
 {	
 	int people;
 	char choice;
+	double total;
 	
-	cout << 	"Welcome to the High Adventure Travel Agency!" << endl;
-	cout <<  "How many people will be participating in this trip?";
+	cout << 	"\nWelcome to the High Adventure Travel Agency!" << endl;
+	cout <<  "\nHow many people will be participating in this trip? ";
 	cin >> people;
 	
-	cout<< "Please select one of our packages." << endl;
+	cout<< "Please select one of our packages." << endl << endl;
 	
 	choice = menu();
 	
 	switch(choice)
 	{
-		case '1': climbing(people);
+		case '1': total = climbing(people);
 						break;
-		case '2': scuba(people);
+		case '2': total = scuba(people);
 						break;
-		case '3': skyDive(people);
+		case '3': total =skyDive(people);
 						break;
-		case '4': spelunk(people);
+		case '4': total = spelunk(people);
 						break;
 		default: cout << "You enter an invalid input. Please Try Again." << endl;
 	}
@@ -108,9 +109,7 @@ double skyDive(int people)
         else if (housingChoice == 'l')
         {
             housingCost = luxury * days;
-        }
-    }
-    
+   
     baseCost = baseCharge * people;
     
     /*if (people > 5)
@@ -123,10 +122,6 @@ double skyDive(int people)
     //}
     return (baseCost + housingCost - allDiscount);    
 }
-double climbing(int people)
-{
- return 5.8;
-}
 double scuba(int people)
 {
 	return 5.6;
@@ -135,4 +130,83 @@ double spelunk(int people)
 {
 	return 5.4;
 }
+double climbing(int people)
+{
+    double 
+        discountTotal = 0,
+        baseTotal, 
+        totalAmount,  
+        climbOptional, 
+        equipOptional;
+        
+    int 
+        peopleOptional, 
+        daysOptional;
 
+    const double 
+        BASE_CHARGE = 350, 
+        DISCOUNT = 0.10, 
+        CLIMB_INSTR = 100, 
+        EQUIP_RENT = 40;
+    
+    cout 
+        << "\nThank you for choosing Devil's Courthouse Adventure Weekend!" << endl
+        << endl << "Listed below are our rates." << endl
+        << "\t⇨ Base Charge: \t\t\t$" << BASE_CHARGE << " per person" << endl
+        << "\t⇨ Climbing Instructions: \t$" << CLIMB_INSTR << " per person (optional)" << endl
+        << "\t⇨ Equipment Rental: \t\t$" << EQUIP_RENT << "/day per person (optional)" << endl << endl;
+    
+    // calculate the base total, before discount
+    baseTotal = BASE_CHARGE * people;
+    
+    // call discount() to calculate the discount
+    discountTotal = 0;//discount(baseTotal, people);
+    
+    cout 
+        << "You have [" << people << "] people in your party." << endl
+        << "Your Base Charge (before discount) is:\t$" << baseTotal << endl
+        << "Your Discount Total is:\t\t\t(-$" << discountTotal << ")" << endl;
+        
+        baseTotal -= discountTotal; // subtract discount total from the base total
+        totalAmount = baseTotal;    // update the total amount
+    
+        
+    cout << "Your Base Charge (after discount) is:\t$" << baseTotal << endl << endl;
+        
+    cout << "Enter the number of people who will need climbing instructions: ";
+    cin >> peopleOptional;
+    
+    cout << "$" << CLIMB_INSTR << " x [" << peopleOptional << "] people =" << endl;
+    
+    climbOptional = CLIMB_INSTR * peopleOptional;   // the optional climbing instruction charge is $100/person
+    
+    cout << "\t⇨ $" << climbOptional << " will be added to your current total of $" << totalAmount << "." << endl;
+    totalAmount += climbOptional;  // add the optional charge of climbing instructions to the totalCharge
+    
+    cout << "\tYour updated total is $" << totalAmount << "." << endl << endl;
+    
+    cout << "Enter the number of people who will need to rent equipment: ";
+    cin >> peopleOptional;
+    
+    cout << "How many days will you be renting equipment? ";
+    cin >> daysOptional;
+    
+    cout << "$" << EQUIP_RENT << " x [" << peopleOptional << "] people x [" << daysOptional << "] days =" << endl;
+    equipOptional = EQUIP_RENT * peopleOptional * daysOptional; // the optional equipment rental charge is $40/day per person
+
+    cout << "\t⇨ $" << equipOptional << " will be added to your current total of $" << totalAmount << "." << endl;
+    totalAmount +=  equipOptional;  // add the optional charge of equipment rental, equipOptional, to the totalCharge 
+        
+    return totalAmount;    
+} 
+void receipt(double total, int people, double discount)
+{
+    cout 
+        << "\nYour charges are as follows:" << endl
+        << "\t⇨ Per person: \t$" << total/people << endl
+        << "\t⇨ Total people: \t" << people << endl
+        << "Base Charge: \t$" << total + discount << endl
+        << "\t⇨ Discount: \t-($" << discount << ")" << endl
+        << "TOTAL CHARGES: \t$" << total << endl
+        << "\nThank you for purchasing your vacation package!" << endl;   
+} 
