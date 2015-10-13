@@ -22,11 +22,13 @@ void receipt(double total, int people, double discount);
 
 int main()
 {    
+	cout << spelunk(5) << endl;
 	return 0;
 }
 
 double discount(double baseCharge, int people)
 {
+    baseCharge = people * baseCharge;
     if (people >= 5)
     {//if five or more people return 10% of the base charge
         return (baseCharge * .10);
