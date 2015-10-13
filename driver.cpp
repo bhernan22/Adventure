@@ -21,7 +21,7 @@ void receipt(double total, int people, double discount);
 
 int main()
 {
-
+    receipt(9000, 4, 0);
 	return 0;
 }
 
@@ -117,54 +117,52 @@ void receipt(double total, int people, double discount)
 //*******************************
 double discount(char choice, int people)
 {
+
     const double DISCOUNT_RATE = 0.10;  // 10% discount only applies to parties of 5 or more people
-    double totalDiscount = 0;
+        
+    double
+        baseCharge, 
+        totalDiscount = 0;
     
-    switch(choice)
+    if (people >= 5)
     {
-        case 1: // Devil's Courthouse Adventure Weekend
-            const double BASE_CHARGE = 325;
-            
-            if (people >= 5)
-            {
-                totalDiscount = BASE_CHARGE * DISCOUNT_RATE; 
+        switch(choice)
+        {
+           case 1: // Devil's Courthouse Adventure Weekend
+                baseCharge = 325;
+                
+                totalDiscount = baseCharge * DISCOUNT_RATE;
                 return totalDiscount;
-            }
-            
-            return totalDiscount;  
-            
-        case 2: // Scuba Bahama
-            const double BASE_CHARGE = 1000;
-            
-            if (people >= 5)
-            {
-                totalDiscount = BASE_CHARGE * DISCOUNT_RATE; 
+                break;
+                
+            case 2: // Scuba Bahama
+                baseCharge = 1000;
+                
+                totalDiscount = baseCharge * DISCOUNT_RATE;
                 return totalDiscount;
-            }
-            
-            return totalDiscount;   
-            
-        case 3: //Sky Dive Colorado
-            const double BASE_CHARGE = 700;
-            
-            if (people >= 5)
-            {
-                totalDiscount = BASE_CHARGE * DISCOUNT_RATE; 
+                break; 
+                
+            case 3: //Sky Dive Colorado
+                baseCharge = 700;
+                
+                totalDiscount = baseCharge * DISCOUNT_RATE;
                 return totalDiscount;
-            }
-            
-            return totalDiscount;   
-            
-        case 4: // Barron Cliff Spelunk
-            const double BASE_CHARGE = 700;
-            
-            if (people >= 5)
-            {
-                totalDiscount = BASE_CHARGE * DISCOUNT_RATE; 
+                break;  
+                
+            case 4: // Barron Cliff Spelunk
+                baseCharge = 700;
+                
+                totalDiscount = baseCharge * DISCOUNT_RATE;
                 return totalDiscount;
-            }
+                break;
             
-            return totalDiscount;   
-            
-    }   // switch()
+            default:
+                cout << "Invalid. Try again." << endl;
+                break;   
+                
+        }   // switch()
+    
+    }   // if()
+    
+    return totalDiscount;
 }   // discount()
